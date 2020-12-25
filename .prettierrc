@@ -1,0 +1,14 @@
+{
+  "git.confirmSync": false,
+  "editor.minimap.enabled": false,
+  "window.zoomLevel": 0,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "workbench.startupEditor": "newUntitledFile",
+  "terminal.integrated.shell.windows": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+  "editor.formatOnSave": true,
+  "prettier.printWidth": 200,
+  "prettier.singleQuote": true,
+  "prettier.arrowParens": "always",
+  "editor.tabSize": 2,
+  "editor.tabCompletion": "on"
+}
