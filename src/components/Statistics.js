@@ -1,7 +1,5 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
-import React, { useEffect, useRef, useState } from "react";
-import { nanoid } from "nanoid";
+import React from "react";
+import PropTypes from "prop-types";
 
 class Statistics extends React.Component {
   constructor(props) {
@@ -22,5 +20,10 @@ class Statistics extends React.Component {
     );
   }
 }
+
+Statistics.propTypes = {
+  liveCells: PropTypes.number,
+  generation: PropTypes.number,
+};
 
 export default Statistics;

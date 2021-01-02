@@ -1,7 +1,5 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
-import React, { useEffect, useRef, useState } from "react";
-import { nanoid } from "nanoid";
+import React from "react";
+import PropTypes from "prop-types";
 
 class Controls extends React.Component {
   constructor(props) {
@@ -20,7 +18,7 @@ class Controls extends React.Component {
   }
 
   handleFastClick() {
-    this.props.onSpeed(10);
+    this.props.onSpeed(100);
   }
 
   render() {
@@ -42,6 +40,7 @@ class Controls extends React.Component {
         ></i>
       );
     }
+
     let stepButton = (
       <i
         className="fa fa-step-forward"
@@ -66,20 +65,62 @@ class Controls extends React.Component {
 
     let slowButton = (
       <div className="speed" onClick={this.handleSlowClick}>
-        <i className="fa fa-caret-right" aria-hidden="true"></i>
+        <i
+          className={
+            this.props.interval === 1000
+              ? "fa fa-caret-right activeSpeed"
+              : "fa fa-caret-right"
+          }
+          aria-hidden="true"
+        ></i>
       </div>
     );
     let normalButton = (
       <div className="speed" onClick={this.handleNormalClick}>
-        <i className="fa fa-caret-right" aria-hidden="true"></i>
-        <i className="fa fa-caret-right" aria-hidden="true"></i>
+        <i
+          className={
+            this.props.interval === 500
+              ? "fa fa-caret-right activeSpeed"
+              : "fa fa-caret-right"
+          }
+          aria-hidden="true"
+        ></i>
+        <i
+          className={
+            this.props.interval === 500
+              ? "fa fa-caret-right activeSpeed"
+              : "fa fa-caret-right"
+          }
+          aria-hidden="true"
+        ></i>
       </div>
     );
     let fastButton = (
       <div className="speed" onClick={this.handleFastClick}>
-        <i className="fa fa-caret-right" aria-hidden="true"></i>
-        <i className="fa fa-caret-right" aria-hidden="true"></i>
-        <i className="fa fa-caret-right" aria-hidden="true"></i>
+        <i
+          className={
+            this.props.interval === 100
+              ? "fa fa-caret-right activeSpeed"
+              : "fa fa-caret-right"
+          }
+          aria-hidden="true"
+        ></i>
+        <i
+          className={
+            this.props.interval === 100
+              ? "fa fa-caret-right activeSpeed"
+              : "fa fa-caret-right"
+          }
+          aria-hidden="true"
+        ></i>
+        <i
+          className={
+            this.props.interval === 100
+              ? "fa fa-caret-right activeSpeed"
+              : "fa fa-caret-right"
+          }
+          aria-hidden="true"
+        ></i>
       </div>
     );
 
@@ -100,5 +141,16 @@ class Controls extends React.Component {
     );
   }
 }
+
+Controls.propTypes = {
+  gameStatus: PropTypes.bool,
+  interval: PropTypes.number,
+  onSpeed: PropTypes.func,
+  onPlay: PropTypes.func,
+  onPause: PropTypes.func,
+  onStep: PropTypes.func,
+  onReset: PropTypes.func,
+  onClear: PropTypes.func,
+};
 
 export default Controls;

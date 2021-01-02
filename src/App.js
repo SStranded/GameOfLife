@@ -1,14 +1,12 @@
-/* eslint-disable no-unused-vars */
-import React, { useEffect, useRef, useState } from "react";
-import { nanoid } from "nanoid";
+import React from "react";
 import Gameboard from "./components/Gameboard";
 import Statistics from "./components/Statistics";
 import Controls from "./components/Controls";
-import "./GOL.scss";
+import "./App.scss";
 
 class GOL extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.handleCellClick = this.handleCellClick.bind(this);
     this.gameStart = this.gameStart.bind(this);
     this.gamePause = this.gamePause.bind(this);
@@ -24,7 +22,7 @@ class GOL extends React.Component {
       generation: 1,
       liveCells: 0,
       inPlay: null,
-      interval: 10,
+      interval: 100,
     };
   }
 
@@ -166,6 +164,7 @@ class GOL extends React.Component {
     this.getLiveCellCount(gameboard);
     this.setState({
       gameboard: gameboard,
+      generation: this.state.generation === 0 ? 1 : this.state.generation,
     });
   }
 
@@ -195,16 +194,22 @@ class GOL extends React.Component {
   }
 
   render() {
+    let gameboardRender;
+    if (this.state.gameboard[0]) {
+      gameboardRender = (
+        <Gameboard
+          gameboard={this.state.gameboard}
+          rows={this.state.rows}
+          cols={this.state.cols}
+          onClick={this.handleCellClick}
+        />
+      );
+    }
     return (
       <div id="GOL">
         <div className="game-of-life">
           <div className="title">Conways Game of Life</div>
-          <Gameboard
-            gameboard={this.state.gameboard}
-            rows={this.state.rows}
-            cols={this.state.cols}
-            onClick={this.handleCellClick}
-          />
+          {gameboardRender}
           <Statistics
             liveCells={this.state.liveCells}
             generation={this.state.generation}
@@ -217,6 +222,7 @@ class GOL extends React.Component {
             onReset={this.gameReset}
             onSpeed={this.handleSpeedChange}
             gameStatus={!!this.state.inPlay}
+            interval={this.state.interval}
           />
         </div>
       </div>

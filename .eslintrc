@@ -4,9 +4,11 @@
   "rules": {
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/prop-types": [2]
   },
   "env": {
+    "browser": true,
     "commonjs": true,
     "es6": true,
     "node": true

@@ -1,25 +1,14 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
-import React, { useEffect, useRef, useState } from "react";
-import { nanoid } from "nanoid";
-import Cell from "./Cell";
+import React from "react";
+import PropTypes from "prop-types";
 
 class Gameboard extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   gameboard: [],
-    // };
   }
 
   renderCell(row, col, cell) {
-    // let dataAttrs = {
-    //   "data-row": row,
-    //   "data-col": col,
-    //   "data-status": cell,
-    //   onClick: this.props.onClick,
-    // };
-    let rowCol = String(row) + "_" + String(col);
+    // cell is 1 (alive) or 0 (dead)
+    let rowCol = row + "_" + col;
     let classes = ["cell dead", "cell alive"];
     let newCell = (
       <div
@@ -29,26 +18,16 @@ class Gameboard extends React.Component {
         id={rowCol}
       />
     );
-    // return <Cell key={"row" + row + "cell" + col} data={dataAttrs} />;
     return newCell;
   }
 
   render() {
     let gameboardArray = this.props.gameboard;
-
-    // still created entire gameboard every step? Wasteful if so.
     let gameboardHTML = [];
     for (let i = 0; i < this.props.rows; i++) {
       let cells = [];
-      let check = gameboardArray[i];
       for (let j = 0; j < this.props.cols; j++) {
-        let cell;
-        if (!check) {
-          cell = this.renderCell(i, j, 0);
-        } else {
-          cell = this.renderCell(i, j, gameboardArray[i][j]);
-        }
-        cells.push(cell);
+        cells.push(this.renderCell(i, j, gameboardArray[i][j]));
       }
       gameboardHTML.push(
         <div key={i} className="game-row">
@@ -60,5 +39,12 @@ class Gameboard extends React.Component {
     return <div className="gameboard">{gameboardHTML}</div>;
   }
 }
+
+Gameboard.propTypes = {
+  onClick: PropTypes.func,
+  gameboard: PropTypes.array,
+  rows: PropTypes.number,
+  cols: PropTypes.number,
+};
 
 export default Gameboard;
