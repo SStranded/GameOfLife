@@ -7,9 +7,9 @@ import Cell from "./Cell";
 class Gameboard extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   gameboard: [],
-    // };
+    this.state = {
+      gameboard: [],
+    };
   }
 
   renderCell(row, col, cell) {
@@ -33,31 +33,47 @@ class Gameboard extends React.Component {
     return newCell;
   }
 
-  render() {
-    let gameboardArray = this.props.gameboard;
-
-    // still created entire gameboard every step? Wasteful if so.
-    let gameboardHTML = [];
-    for (let i = 0; i < this.props.rows; i++) {
-      let cells = [];
-      let check = gameboardArray[i];
-      for (let j = 0; j < this.props.cols; j++) {
-        let cell;
-        if (!check) {
-          cell = this.renderCell(i, j, 0);
+  renderBoard() {
+    let gameboard = [];
+    for (let row = 0; row < this.props.rows; row++) {
+      let rowOfCells = [];
+      for (let col = 0; col < this.props.cols; col++) {
+        let position = { row: row, col: col };
+        if (this.props.life.isCellAlive(position)) {
+          rowOfCells.push(
+            <div
+              className={"cell alive"}
+              key={[row, col]}
+              onClick={() => this.props.swapCell(position)}
+            ></div>
+          );
         } else {
-          cell = this.renderCell(i, j, gameboardArray[i][j]);
+          rowOfCells.push(
+            <div
+              className={"cell dead"}
+              key={[row, col]}
+              onClick={() => this.props.swapCell(position)}
+            ></div>
+          );
         }
-        cells.push(cell);
       }
-      gameboardHTML.push(
-        <div key={i} className="game-row">
-          {cells}
+      gameboard.push(
+        <div key={row} className="game-row">
+          {rowOfCells}
         </div>
       );
     }
+    this.setState({
+      gameboard: gameboard,
+    });
+  }
 
-    return <div className="gameboard">{gameboardHTML}</div>;
+  componentDidMount() {
+    this.renderBoard();
+  }
+
+  render() {
+    return <div className="gameboard">{this.state.gameboard}</div>;
   }
 }
 

@@ -2,9 +2,15 @@
 
 $cell-w-h: 10px;
 $cell-border: 0 solid #444444;
+$main: rgb(52, 161, 37);
+$secondary: rgb(0, 0, 0);
 
 * {
   box-sizing: border-box;
+}
+
+body {
+  background-color: $secondary;
 }
 
 #GOL {
@@ -15,40 +21,37 @@ $cell-border: 0 solid #444444;
   .game-of-life {
     padding: 10px;
     border-radius: 5px;
-    background-color: black;
-    box-shadow: 8px 16px 15px 5px #0a2901;
+    background-color: $secondary;
+    box-shadow: 0px 0px 200px 5px $main;
 
     .title {
       margin: 5px 0 10px 0;
-      color: rgb(28, 136, 28);
+      color: $main;
       font-size: 1.7em;
       font-weight: bold;
       text-align: center;
     }
 
     .gameboard {
-      border: 1px solid rgba(28, 136, 28, 1);
-    }
+      border: 1px solid $main;
 
-    .fa {
-      min-width: 35px;
-      padding: 0 10px;
-      color: rgb(28, 136, 28);
-      font-weight: bold;
-      cursor: pointer;
-    }
+      .game-row {
+        display: flex;
 
-    .speed {
-      display: inline;
-      padding: 0 10px;
-    }
+        .cell {
+          width: $cell-w-h;
+          height: $cell-w-h;
+          border: $cell-border;
+        }
 
-    .fa-caret-right {
-      min-width: 0;
-      padding: 0;
-      color: rgb(28, 136, 28);
-      font-weight: bold;
-      cursor: pointer;
+        .dead {
+          background-color: $secondary;
+        }
+
+        .alive {
+          background-color: $main;
+        }
+      }
     }
 
     .statistics {
@@ -57,32 +60,41 @@ $cell-border: 0 solid #444444;
       margin-top: 20px;
       .stat {
         font-weight: bold;
-        color: rgb(28, 136, 28);
+        color: $main;
       }
-    }
-
-    .game-row {
-      display: flex;
-    }
-
-    .cell {
-      width: $cell-w-h;
-      height: $cell-w-h;
-      border: $cell-border;
-    }
-
-    .dead {
-      background-color: black;
-    }
-
-    .alive {
-      background-color: rgba(28, 136, 28, 1);
     }
 
     .controls {
       display: flex;
       justify-content: space-between;
       margin: 20px auto;
+
+      .fa {
+        min-width: 35px;
+        padding: 0 10px;
+        color: rgba($main, 0.5);
+        font-weight: bold;
+        cursor: pointer;
+
+        :hover {
+          color: $main;
+        }
+      }
+
+      .fa-caret-right {
+        min-width: 0;
+        padding: 0;
+        font-weight: bold;
+      }
+
+      .speed {
+        display: inline;
+        padding: 0 10px;
+      }
+
+      .activeSpeed {
+        color: saturate($main, 10%);
+      }
     }
   }
 }
