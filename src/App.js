@@ -208,7 +208,7 @@ class GOL extends React.Component {
     return (
       <div id="GOL">
         <div className="game-of-life">
-          <div className="title">Conways Game of Life</div>
+          <div className="title">Conway&#39;s Game of Life</div>
           {gameboardRender}
           <Statistics
             liveCells={this.state.liveCells}
