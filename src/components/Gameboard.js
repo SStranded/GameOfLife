@@ -9,10 +9,10 @@ class Gameboard extends React.Component {
   renderCell(row, col, cell) {
     // cell is 1 (alive) or 0 (dead)
     let rowCol = row + "_" + col;
-    let classes = ["cell dead", "cell alive"];
+    let classes = ["bg-black dead", "bg-primary"];
     let newCell = (
       <div
-        className={classes[cell]}
+        className={classes[cell] + " w-2.5 h-2.5 "}
         onClick={this.props.onClick}
         key={rowCol}
         id={rowCol}
@@ -30,13 +30,13 @@ class Gameboard extends React.Component {
         cells.push(this.renderCell(i, j, gameboardArray[i][j]));
       }
       gameboardHTML.push(
-        <div key={i} className="game-row">
+        <div key={i} className="flex">
           {cells}
         </div>
       );
     }
 
-    return <div className="gameboard">{gameboardHTML}</div>;
+    return <div className="border border-primary">{gameboardHTML}</div>;
   }
 }
 

@@ -7,13 +7,19 @@ class Statistics extends React.Component {
   }
   render() {
     const liveCells = (
-      <div className="stat">Live Cells: {this.props.liveCells}</div>
+      <div className="flex justify-between text-md font-medium w-36 text-center font-mono">
+        <span>Live Cells:</span>
+        <span>{this.props.liveCells}</span>
+      </div>
     );
     const generation = (
-      <div className="stat">Generation: {this.props.generation}</div>
+      <div className="flex justify-between text-md font-medium w-36 text-center font-mono">
+        <span>Generation:</span>
+        <span className="font-mono">{this.props.generation}</span>
+      </div>
     );
     return (
-      <div className="statistics">
+      <div className="flex justify-around my-4 text-primary">
         {liveCells}
         {generation}
       </div>

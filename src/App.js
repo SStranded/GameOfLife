@@ -2,7 +2,6 @@ import React from "react";
 import Gameboard from "./components/Gameboard";
 import Statistics from "./components/Statistics";
 import Controls from "./components/Controls";
-import "./App.scss";
 
 class GOL extends React.Component {
   constructor() {
@@ -159,8 +158,9 @@ class GOL extends React.Component {
 
   handleCellClick(event) {
     let gameboard = this.state.gameboard.slice(0);
-    gameboard[event.target.id.split("_")[0]][event.target.id.split("_")[1]] =
-      event.target.className == "cell dead" ? 1 : 0;
+    let row = event.target.id.split("_")[0];
+    let col = event.target.id.split("_")[1];
+    gameboard[row][col] = event.target.classList.contains("dead") ? 1 : 0;
     this.getLiveCellCount(gameboard);
     this.setState({
       gameboard: gameboard,
@@ -206,9 +206,11 @@ class GOL extends React.Component {
       );
     }
     return (
-      <div id="GOL">
-        <div className="game-of-life">
-          <div className="title">Conway&#39;s Game of Life</div>
+      <div className="flex justify-center m-24">
+        <div className="p-2.5 bg-black rounded-lg shadow-2xl">
+          <div className="text-primary pb-5 pt-2.5 text-3xl text-center font-mono">
+            Conway&#39;s Game of Life
+          </div>
           {gameboardRender}
           <Statistics
             liveCells={this.state.liveCells}

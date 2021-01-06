@@ -26,7 +26,7 @@ class Controls extends React.Component {
     if (!this.props.gameStatus) {
       playPauseButton = (
         <i
-          className="fa fa-play"
+          className="fa fa-play mx-2.5 cursor-pointer"
           aria-hidden="true"
           onClick={this.props.onPlay}
         ></i>
@@ -34,7 +34,7 @@ class Controls extends React.Component {
     } else {
       playPauseButton = (
         <i
-          className="fa fa-pause"
+          className="fa fa-pause mx-2.5 cursor-pointer"
           aria-hidden="true"
           onClick={this.props.onPause}
         ></i>
@@ -43,64 +43,64 @@ class Controls extends React.Component {
 
     let stepButton = (
       <i
-        className="fa fa-step-forward"
+        className="fa fa-step-forward mx-2.5 cursor-pointer"
         aria-hidden="true"
         onClick={this.props.onStep}
       ></i>
     );
     let resetButton = (
       <i
-        className="fa fa-refresh"
+        className="fa fa-refresh mx-2.5 cursor-pointer"
         aria-hidden="true"
         onClick={this.props.onReset}
       ></i>
     );
     let clearButton = (
       <i
-        className="fa fa-bomb"
+        className="fa fa-bomb mx-2.5 cursor-pointer"
         aria-hidden="true"
         onClick={this.props.onClear}
       ></i>
     );
 
     let slowButton = (
-      <div className="speed" onClick={this.handleSlowClick}>
+      <div className="mx-2.5 inline" onClick={this.handleSlowClick}>
         <i
           className={
             this.props.interval === 1000
-              ? "fa fa-caret-right activeSpeed"
-              : "fa fa-caret-right"
+              ? "fa fa-caret-right activeSpeed p-0 cursor-pointer"
+              : "fa fa-caret-right p-0 cursor-pointer"
           }
           aria-hidden="true"
         ></i>
       </div>
     );
     let normalButton = (
-      <div className="speed" onClick={this.handleNormalClick}>
+      <div className="mx-2.5 inline" onClick={this.handleNormalClick}>
         <i
           className={
             this.props.interval === 500
-              ? "fa fa-caret-right activeSpeed"
-              : "fa fa-caret-right"
+              ? "fa fa-caret-right activeSpeed p-0 cursor-pointer"
+              : "fa fa-caret-right p-0 cursor-pointer"
           }
           aria-hidden="true"
         ></i>
         <i
           className={
             this.props.interval === 500
-              ? "fa fa-caret-right activeSpeed"
-              : "fa fa-caret-right"
+              ? "fa fa-caret-right activeSpeed p-0 cursor-pointer"
+              : "fa fa-caret-right p-0 cursor-pointer"
           }
           aria-hidden="true"
         ></i>
       </div>
     );
     let fastButton = (
-      <div className="speed" onClick={this.handleFastClick}>
+      <div className="mx-2.5 inline" onClick={this.handleFastClick}>
         <i
           className={
             this.props.interval === 100
-              ? "fa fa-caret-right activeSpeed"
+              ? "fa fa-caret-right activeSpeed p-0 cursor-pointer"
               : "fa fa-caret-right"
           }
           aria-hidden="true"
@@ -108,7 +108,7 @@ class Controls extends React.Component {
         <i
           className={
             this.props.interval === 100
-              ? "fa fa-caret-right activeSpeed"
+              ? "fa fa-caret-right activeSpeed p-0 cursor-pointer"
               : "fa fa-caret-right"
           }
           aria-hidden="true"
@@ -116,7 +116,7 @@ class Controls extends React.Component {
         <i
           className={
             this.props.interval === 100
-              ? "fa fa-caret-right activeSpeed"
+              ? "fa fa-caret-right activeSpeed p-0 cursor-pointer"
               : "fa fa-caret-right"
           }
           aria-hidden="true"
@@ -125,7 +125,7 @@ class Controls extends React.Component {
     );
 
     return (
-      <div className="controls">
+      <div className="flex justify-between my-3 mx-auto text-primary">
         <div>
           {playPauseButton}
           {stepButton}
