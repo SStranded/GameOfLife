@@ -2,6 +2,7 @@ import React from "react";
 import Gameboard from "./components/Gameboard";
 import Statistics from "./components/Statistics";
 import Controls from "./components/Controls";
+import Modal from "./components/Modal";
 import "./App.scss";
 
 class GOL extends React.Component {
@@ -14,6 +15,7 @@ class GOL extends React.Component {
     this.gameStep = this.gameStep.bind(this);
     this.gameReset = this.gameReset.bind(this);
     this.handleSpeedChange = this.handleSpeedChange.bind(this);
+    this.handleModal = this.handleModal.bind(this);
     this.state = {
       rows: 50,
       cols: 50,
@@ -23,6 +25,7 @@ class GOL extends React.Component {
       liveCells: 0,
       inPlay: null,
       interval: 100,
+      showModal: false,
     };
   }
 
@@ -192,6 +195,12 @@ class GOL extends React.Component {
     }
   }
 
+  handleModal() {
+    this.setState({
+      showModal: !this.state.showModal,
+    });
+  }
+
   componentDidMount() {
     this.gameReset();
   }
@@ -214,26 +223,35 @@ class GOL extends React.Component {
     }
 
     return (
-      <div id="GOL">
-        <div className="game-of-life">
-          <div className="title">Conway&#39;s Game of Life</div>
-          {gameboardRender}
-          <Statistics
-            liveCells={this.state.liveCells}
-            generation={this.state.generation}
-          />
-          <Controls
-            onPlay={this.gameStart}
-            onPause={this.gamePause}
-            onClear={this.gameClear}
-            onStep={this.gameStep}
-            onReset={this.gameReset}
-            onSpeed={this.handleSpeedChange}
-            gameStatus={!!this.state.inPlay}
-            interval={this.state.interval}
-          />
+      <>
+        {this.state.showModal ? <Modal onClick={this.handleModal} /> : ""}
+        <div id="GOL">
+          <div className="game-of-life">
+            <div className="title">
+              Conway&#39;s Game of Life{" "}
+              <i
+                className="fa fa-question-circle"
+                onClick={this.handleModal}
+              ></i>
+            </div>
+            {gameboardRender}
+            <Statistics
+              liveCells={this.state.liveCells}
+              generation={this.state.generation}
+            />
+            <Controls
+              onPlay={this.gameStart}
+              onPause={this.gamePause}
+              onClear={this.gameClear}
+              onStep={this.gameStep}
+              onReset={this.gameReset}
+              onSpeed={this.handleSpeedChange}
+              gameStatus={!!this.state.inPlay}
+              interval={this.state.interval}
+            />
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 }

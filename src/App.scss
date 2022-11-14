@@ -9,6 +9,61 @@ body {
   background-color: $secondary;
 }
 
+#modal {
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 10rem; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  z-index: 1; /* Sit on top */
+
+  @media screen and (max-width: 550px) {
+    padding-top: 10rem; /* Location of the box */
+  }
+
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    width: 55rem;
+    height: 70rem;
+    margin: auto;
+    padding: 2rem;
+    font-size: 1.7rem;
+    background-color: $main;
+
+    // @media screen and (max-width: 550px) {
+    //   height: 80rem;
+    // }
+
+    .close {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-self: flex-end;
+      width: 4rem;
+      height: 4rem;
+      margin-bottom: 3rem;
+      color: $main;
+      font-size: 2rem;
+      border: 1px solid $main;
+      background-color: $secondary;
+      cursor: pointer;
+    }
+
+    p {
+      padding: 1rem 0;
+    }
+
+    ol {
+      padding: 0.5rem 3rem;
+    }
+  }
+}
+
 #GOL {
   display: flex;
   justify-content: center;
@@ -101,7 +156,4 @@ body {
       }
     }
   }
-}
-
-@media screen and (max-width: 550px) {
 }
