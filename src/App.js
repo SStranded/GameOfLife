@@ -26,6 +26,7 @@ class GOL extends React.Component {
     };
   }
 
+  // Sets up the game array of cells
   createGameArray(rows, cols, clear = false) {
     let gameboard = [];
     for (let i = 0; i < rows; i++) {
@@ -41,6 +42,7 @@ class GOL extends React.Component {
     return gameboard;
   }
 
+  // Gets number of 'live' cells
   getLiveCellCount(gameboard) {
     let liveCellCount = gameboard.reduce((liveCells, row) => {
       row.forEach((cell) => {
@@ -53,6 +55,7 @@ class GOL extends React.Component {
     });
   }
 
+  // Gets the number of 'live' cells that neighbor a cell
   checkNeighbors(cell, row, col) {
     let neighbors = 0;
     // check each cell in 3x3 grid around cell and count live cells
@@ -77,12 +80,13 @@ class GOL extends React.Component {
     return neighbors;
   }
 
+  // Processes a single generation
   lifeCycle() {
     let liveCells = 0;
     let newGameBoard = this.state.gameboard.map((row, rowIndex) =>
       row.map((cell, cellIndex) => {
         let liveNeighbors = this.checkNeighbors(cell, rowIndex, cellIndex);
-        // replace following with switch
+        // TODO replace following with switch for easier readability
         if (cell) {
           liveNeighbors <= 1
             ? (cell = 0)
@@ -128,6 +132,7 @@ class GOL extends React.Component {
     }
   }
 
+  // Clears the board and creates new array
   gameClear() {
     this.gamePause();
     let gameboard = this.createGameArray(
@@ -157,6 +162,8 @@ class GOL extends React.Component {
     });
   }
 
+  // Clicking on cell will change it to the opposite of it's state (live > dead; dead > live)
+  // Updates live cell count and game board
   handleCellClick(event) {
     let gameboard = this.state.gameboard.slice(0);
     gameboard[event.target.id.split("_")[0]][event.target.id.split("_")[1]] =
@@ -205,6 +212,7 @@ class GOL extends React.Component {
         />
       );
     }
+
     return (
       <div id="GOL">
         <div className="game-of-life">

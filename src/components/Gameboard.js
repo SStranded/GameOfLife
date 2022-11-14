@@ -6,6 +6,7 @@ class Gameboard extends React.Component {
     super(props);
   }
 
+  // An individual cell
   renderCell(row, col, cell) {
     // cell is 1 (alive) or 0 (dead)
     let rowCol = row + "_" + col;
